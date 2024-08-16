@@ -3,15 +3,17 @@ import base64
 import pandas as pd 
 import plotly.express as px
 import streamlit as st   
+import os
+
 
 # Set the page configuration
 st.set_page_config(
     page_title='Data Diwan Analytics App',
     page_icon='📊'
 )
-
 # Path to your logo image
-logo_path = 'C:/Users/sawsa/Desktop/OPE/data_analysi_app/logo.jpeg'
+current_dir = os.path.dirname(__file__)
+logo_path = os.path.join(current_dir, 'logo.jpeg')
 
 # Read the image file
 with open(logo_path, "rb") as image_file:
@@ -415,23 +417,13 @@ if files:
                         st.error(f"Error combining datasets: {e}")
 
 
-
-
-
 # Sidebar: Add logo
-st.sidebar.image('./media/logo.jpeg', use_column_width=True)
+st.sidebar.image('./media/second_logo.jpeg', use_column_width=True)
 
 st.sidebar.write("")
 
 # Signature
 st.sidebar.write("")
-
-# Insert the image at the top of the page
-logo_path="./media/logo1.png"
-# Add logo at the top of the page
-# Read the image file
-with open(logo_path, "rb") as image_file:
-    encoded_image = base64.b64encode(image_file.read()).decode()
 
 
 st.sidebar.markdown(
