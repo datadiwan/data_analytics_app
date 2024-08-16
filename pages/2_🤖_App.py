@@ -13,7 +13,7 @@ st.set_page_config(
 )
 # Path to your logo image
 current_dir = os.path.dirname(__file__)
-logo_path = os.path.join(current_dir, 'logo.jpeg')
+logo_path = os.path.join(current_dir, '../media/logo.jpeg')
 
 # Read the image file
 with open(logo_path, "rb") as image_file:
@@ -418,7 +418,7 @@ if files:
 
 
 # Sidebar: Add logo
-st.sidebar.image('./media/second_logo.jpeg', use_column_width=True)
+st.sidebar.image('./media/logo.jpeg', use_column_width=True)
 
 st.sidebar.write("")
 
