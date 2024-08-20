@@ -281,11 +281,11 @@ if files:
 
         with tab5:
             # Column value counts and visualization
-            st.subheader(f":orange[Column Values To Count]", divider='orange')
+            st.subheader(f":orange[Values Count & Visuals]", divider='orange')
             with st.expander(":gray[Column Values To Count]"):
                 col1, col2 = st.columns(2)
                 with col1:
-                    column = st.selectbox('Column Values To Count', options=list(data.columns))
+                    column = st.selectbox('Values To Count', options=list(data.columns))
                 with col2:
                     toprows = st.number_input('Top Rows', min_value=1, step=1)
 
@@ -312,7 +312,7 @@ if files:
 
                     st.dataframe(result)
 
-                    st.subheader(f":gray Visualization", divider='gray')
+                    st.subheader(f":gray Visualize The Data", divider='gray')
                     graphs = st.selectbox('Graphs', options=['line', 'bar', 'scatter', 'pie', 'sunburst'])
                     if graphs == 'line':
                         x_axis = st.selectbox('choose_x', options=list(result.columns))
