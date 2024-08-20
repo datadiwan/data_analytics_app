@@ -4,3 +4,7 @@ plotly==5.22.0
 pillow
 matplotlib
 pandas
+scipy
+scikit-learn
+seaborn
+statsmodels

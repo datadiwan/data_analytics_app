@@ -91,7 +91,7 @@ st.sidebar.markdown(
             <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Github_logo_svg.svg" width="40">
         </a>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="mailto:sawsan.abdulbari@gmail.com">
+        <a href="mailto:infodatadiwan@gmail.com">
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" width="40">
         </a>
     </div>

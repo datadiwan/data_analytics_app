@@ -62,19 +62,20 @@ def plot_value_counts(data, column, num_rows):
 
     st.dataframe(result)
 
-    st.subheader('Visualization', divider='gray')
-
-    # Create the bar chart
-    fig = px.bar(data_frame=result, x='index', y='count', text='count', template='plotly_white')
+    st.subheader(':orange[📈Visualization]', divider='gray')
+    # Create the pie chart
+    fig = px.pie(data_frame=result, names='index', values='count')
     st.plotly_chart(fig)
 
     # Create the line chart
     fig = px.line(data_frame=result, x='index', y='count', text='count', template='plotly_white')
     st.plotly_chart(fig)
-
-    # Create the pie chart
-    fig = px.pie(data_frame=result, names='index', values='count')
+    
+    # Create the bar chart
+    fig = px.bar(data_frame=result, x='index', y='count', text='count', template='plotly_white')
     st.plotly_chart(fig)
+
+
 
 
 data = None  # Initialize the data variable to None
@@ -106,7 +107,7 @@ if files:
         # Tabs for Data Analysis
         tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
             "🔝 Top/Bottom", "📈 Summary", 
-            "📑 Columns", "🧹Cleaning", "🔢 Value Counts", "🔠 Group By"
+            "📑 Columns", "🧹Cleaning", "🔢 Value Counts", "🔠 Group By Functionality"
         ])
 
         with tab1:
@@ -168,7 +169,7 @@ if files:
                 # Visualize missing values
                 st.bar_chart(missing_values[missing_values > 0])
 
-                if st.checkbox('Handle Missing Data'):
+                if st.checkbox('🔄Handle Missing Data'):
                     st.info(f"Total missing values in {dataset_to_discover}: {total_missing}")
                     
                     # Select the method to handle missing data
@@ -221,7 +222,7 @@ if files:
                     st.dataframe(preview)
 
                     # Provide an explicit confirmation option before applying changes
-                    apply_changes = st.button(f"Apply to {dataset_to_discover}")
+                    apply_changes = st.button(f"💾Apply to {dataset_to_discover}")
 
                     if apply_changes:
                         confirmation = st.radio(
@@ -252,7 +253,7 @@ if files:
                 # Choose method for outlier detection
                 method = st.selectbox("Select method to detect outliers:", options=["IQR", "Z-score"])
 
-                if st.button("Detect Outliers"):
+                if st.button("🚨Detect Outliers"):
                     if method == "IQR":
                         Q1 = data[column].quantile(0.25)
                         Q3 = data[column].quantile(0.75)
@@ -281,7 +282,7 @@ if files:
 
         with tab5:
             # Column value counts and visualization
-            st.subheader(f":orange[Values Count & Visuals]", divider='orange')
+            st.subheader(f":orange[📊Values Count & Visuals]", divider='orange')
             with st.expander(":gray[Column Values To Count]"):
                 col1, col2 = st.columns(2)
                 with col1:
@@ -289,12 +290,12 @@ if files:
                 with col2:
                     toprows = st.number_input('Top Rows', min_value=1, step=1)
 
-                count = st.button('Count')
+                count = st.button('🧮Count')
                 if count:
                     plot_value_counts(data, column, toprows)
 
         with tab6:
-            st.subheader(f":orange[Groupby: Simplify your data analysis]", divider='orange')
+            st.subheader(f":orange[Groupby: Streamline your data analysis process]", divider='orange')
             st.write('The groupby lets you summarize data by specific categories and groups')
             with st.expander('Groupby'):
                 col1, col2, col3 = st.columns(3)
@@ -312,7 +313,7 @@ if files:
 
                     st.dataframe(result)
 
-                    st.subheader(f":gray Visualize The Data", divider='gray')
+                    st.subheader(f":orange[📊 Visualize The Data]", divider='gray')
                     graphs = st.selectbox('Graphs', options=['line', 'bar', 'scatter', 'pie', 'sunburst'])
                     if graphs == 'line':
                         x_axis = st.selectbox('choose_x', options=list(result.columns))
@@ -362,15 +363,15 @@ if files:
                     options=["Vertical (Append)", "Horizontal (Merge)"]
                 )
 
-                if st.button("Combine Datasets"):
+                if st.button("🔗 Combine Datasets"):
                     try:
                         if merge_type == "Vertical (Append)":
                             # Ensure all datasets have the same columns
                             columns_set = set(datasets[datasets_to_combine[0]].columns)
                             if all(set(datasets[name].columns) == columns_set for name in datasets_to_combine):
                                 combined_data = pd.concat([datasets[name] for name in datasets_to_combine], ignore_index=True)
-                                st.success("Datasets combined successfully!")
-                                st.write(f"Combined dataset shape: {combined_data.shape}")
+                                st.success("➕ Datasets combined successfully!")
+                                st.write(f"📂Combined dataset shape: {combined_data.shape}")
                                 st.write(combined_data.head())
                                 
                                 # Convert the combined DataFrame to CSV
@@ -378,7 +379,7 @@ if files:
 
                                 # Add a download button
                                 st.download_button(
-                                    label="Download Combined Dataset",
+                                    label="⬇️Download Combined Dataset",
                                     data=csv_data,
                                     file_name="combined_dataset.csv",
                                     mime="text/csv"
@@ -416,7 +417,6 @@ if files:
                     except Exception as e:
                         st.error(f"Error combining datasets: {e}")
 
-
 # Sidebar: Add logo
 st.sidebar.image('./media/logo.jpeg', use_column_width=True)
 
@@ -437,7 +437,7 @@ st.sidebar.markdown(
             <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Github_logo_svg.svg" width="40">
         </a>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="mailto:sawsan.abdulbari@gmail.com">
+        <a href="mailto:infodatadiwan@gmail.com">
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" width="40">
         </a>
     </div>
